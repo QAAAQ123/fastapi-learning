@@ -1,12 +1,12 @@
 from fastapi import FastAPI
 
 from todos.todo import todo_router
-app = FastAPI()
+pratice_app = FastAPI()
 
-@app.get("/")
+@pratice_app.get("/")
 async def welcome() -> dict: 
     return {
             "message":"Hello"
     }
 
-app.include_router(todo_router)
+pratice_app.include_router(todo_router)
