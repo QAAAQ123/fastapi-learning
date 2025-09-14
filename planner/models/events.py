@@ -1,12 +1,13 @@
-from sqlmodel import JSON,SQLModel,Field,Column
+from beanie import Document
 from typing import Optional,List
+from pydantic import BaseModel
 
-class Event(SQLModel,table=True):
-    id:int = Field(default=None,primary_key=True)#자동 생성 고유 식별자
+
+class Event(Document):
     title:str #이벤트 타이틀
     image:str  #이벤트 이미지 배너 링크
     description:str#이벤트 설정
-    tags:List[str] = Field(sa_column=Column(JSON))#그룹화를 위한 이벤트 태그
+    tags:List[str] #그룹화를 위한 이벤트 태그
     location:str #이벤트 위치
 
     class Config:
@@ -22,12 +23,15 @@ class Event(SQLModel,table=True):
             }
         }
 
-class EventUpdate(SQLModel):
-    title: Optional[str]
-    image: Optional[str]
-    description: Optional[str]
-    tags: Optional[List[str]]
-    location: Optional[str]
+    class Settings:
+        name = "events"
+
+class EventUpdate(BaseModel):
+    title: Optional[str] = None
+    image: Optional[str] = None
+    description: Optional[str] = None
+    tags: Optional[List[str]] = None
+    location: Optional[str] = None
 
     class Config:
         json_schema_extra = {
