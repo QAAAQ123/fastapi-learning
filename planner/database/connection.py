@@ -1,3 +1,4 @@
+#sqlite 사용
 from sqlmodel import SQLModel,Session, create_engine
 from planner.models.events import Event
 
