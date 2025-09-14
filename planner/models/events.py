@@ -4,6 +4,7 @@ from pydantic import BaseModel
 
 
 class Event(Document):
+    creator: Optional[str]
     title:str #이벤트 타이틀
     image:str  #이벤트 이미지 배너 링크
     description:str#이벤트 설정

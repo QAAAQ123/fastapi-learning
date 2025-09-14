@@ -56,6 +56,7 @@ class Database:
 
 class Settings(BaseSettings):
     DATABASE_URL: Optional[str] = None
+    SECRET_KEY: Optional[str] = None
 
     # model_config를 Settings 클래스의 직접적인 멤버로 정의합니다.
     model_config = SettingsConfigDict(env_file=".env")

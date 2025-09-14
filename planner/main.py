@@ -4,6 +4,7 @@ from planner.routes.users import user_router
 from planner.routes.events import event_router
 from planner.database.connection import Settings
 from contextlib import asynccontextmanager
+from fastapi.middleware.cors import CORSMiddleware
 
 settings = Settings()
 
@@ -24,3 +25,13 @@ app.include_router(event_router,prefix="/event")
 @app.get("/")
 async def home():
     return RedirectResponse(url="/event/")
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
